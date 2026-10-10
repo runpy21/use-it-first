@@ -20,7 +20,7 @@ The tagline is **Less waste, more taste.**
 - Vite
 - Tailwind CSS v4, through the official `@tailwindcss/vite` plugin
 - lucide-react for icons
-- Vitest for the date, storage, and impact tests
+- Vitest for the date, storage, and impact tests, plus React Testing Library for the main screen flows
 
 ## Installation
 
