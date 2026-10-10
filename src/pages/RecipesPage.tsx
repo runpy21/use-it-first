@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { ChevronLeft } from 'lucide-react'
 import { RECIPES } from '../data/recipes'
 import { PageIntro } from '../components/PageIntro'
 import { StatusBadge } from '../components/StatusBadge'
@@ -14,11 +15,17 @@ export function RecipesPage() {
   const [showDetail, setShowDetail] = useState(false)
   const selected = ranked.find((match) => match.recipe.id === selectedId) ?? ranked[0]
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 })
+  }, [showDetail, selectedId])
+
   return (
     <div>
-      <PageIntro title="Recipes">
-        <p>These are prepared recipes, matched to your kitchen. Nothing here is generated.</p>
-      </PageIntro>
+      <div className={cx(showDetail && 'max-lg:hidden')}>
+        <PageIntro title="Recipes">
+          <p>These are prepared recipes, matched to your kitchen. Nothing here is generated.</p>
+        </PageIntro>
+      </div>
 
       <div className="lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-8">
         <ul className={cx('space-y-3', showDetail && 'hidden lg:block')}>
@@ -67,7 +74,7 @@ export function RecipesPage() {
                         ) : null}
                       </span>
                     </span>
-                    <span className="text-sm font-semibold text-forest">{match.matchPercent}%</span>
+                    <span className="shrink-0 text-sm font-semibold text-forest">{match.matchPercent}%</span>
                   </div>
                 </button>
               </li>
@@ -91,10 +98,17 @@ function RecipeDetail({ match, onBack }: { match: RecipeMatch; onBack: () => voi
   const { recipe } = match
 
   return (
-    <article className="rounded-3xl bg-paper px-5 py-6 sm:px-7">
-      <button type="button" className="mb-4 text-sm font-semibold text-forest lg:hidden" onClick={onBack}>
-        All recipes
-      </button>
+    <article className="rounded-3xl bg-paper px-5 py-4 sm:px-7 sm:py-6">
+      <div className="sticky top-0 z-20 -mx-5 mb-4 border-b border-line bg-paper px-5 py-3 lg:hidden">
+        <button
+          type="button"
+          className="inline-flex min-h-11 w-full items-center gap-2 rounded-xl bg-sage px-3 text-sm font-semibold text-forest"
+          onClick={onBack}
+        >
+          <ChevronLeft aria-hidden="true" size={18} />
+          All recipes
+        </button>
+      </div>
       <p className="text-4xl" aria-hidden="true">
         {recipe.emoji}
       </p>
