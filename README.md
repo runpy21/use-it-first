@@ -4,6 +4,8 @@ Use It First is a small kitchen app for people who want to eat what they already
 
 The tagline is **Less waste, more taste.**
 
+The interface is in English. Data stays in this browser. Nothing is sent to a server.
+
 ## Features
 
 - Overview with a welcome, four summary counts, a “Use these first” list, and a weekly impact panel.
@@ -14,19 +16,40 @@ The tagline is **Less waste, more taste.**
 - Weekly Impact for the current Monday–Sunday week, compared with the previous week.
 - Data saved in this browser with `localStorage`, including a demo kitchen on the first visit.
 
+On a phone, the sidebar collapses into a menu. Opening a recipe shows an **All recipes** button that returns to the list.
+
 ## Technology stack
 
 - React 19 and TypeScript
-- Vite
-- Tailwind CSS v4, through the official `@tailwindcss/vite` plugin
+- Vite 8
+- Tailwind CSS v4, through the official `@tailwindcss/vite` plugin (theme tokens live in `src/index.css`, not a `tailwind.config.js` file)
 - lucide-react for icons
-- Vitest for the date, storage, and impact tests, plus React Testing Library for the main screen flows
+- Vitest for date, storage, and impact tests
+- React Testing Library and happy-dom for the main screen flows
 
-## Installation
+## Requirements
+
+- Node.js `^20.19.0` or `>=22.12.0` (the range Vite 8 requires)
+- npm (this repo includes `package-lock.json`)
+
+Check your versions:
+
+```bash
+node -v
+npm -v
+```
+
+No API key, `.env` file, or database is required.
+
+## Setup
+
+From the project folder:
 
 ```bash
 npm install
 ```
+
+That installs the app and the test tools. You only need to run it again after `package.json` changes.
 
 ## Local development
 
@@ -34,25 +57,44 @@ npm install
 npm run dev
 ```
 
-Then open the address Vite prints, usually `http://localhost:5173`.
+Vite prints a local address, usually `http://localhost:5173`. Open that in a browser.
 
-Other checks:
+The first visit with an empty save writes a demo kitchen under the storage key `use-it-first.v1`. The sidebar also has **Restore demo kitchen** and **Clear saved data**. Clearing removes products and usage history from this browser. Restoring replaces both with the sample kitchen.
 
-```bash
-npm test
-npm run lint
-```
+Refresh the page to confirm a change was saved. A different browser, or the same browser on another device, has its own empty copy.
+
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Starts the Vite dev server with hot reload |
+| `npm test` | Runs the Vitest suite once |
+| `npm run lint` | Runs Oxlint |
+| `npm run build` | Type-checks with `tsc -b`, then writes the production site to `dist/` |
+| `npm run preview` | Serves the `dist/` folder locally. Run `npm run build` first |
 
 ## Production build
 
 ```bash
 npm run build
+npm run preview
 ```
 
-The compiled site is written to `dist/`. Preview it with:
+`npm run build` fails if TypeScript fails, because the script is `tsc -b && vite build`. The preview server prints its own local address. The built files are static and can be hosted on any static file host. There is still no account or sync: each visitor’s kitchen is stored in that browser.
 
-```bash
-npm run preview
+## Project layout
+
+```text
+src/
+  components/   Shared interface pieces, including the sidebar and dialogs
+  pages/        Overview, My Products, Recipes, and Weekly Impact
+  data/         Demo kitchen and the prepared recipes
+  hooks/        Inventory state and localStorage
+  lib/          Dates, expiration, storage, impact, and recipe matching
+  types/        Product, usage, and recipe types
+  App.tsx
+  main.tsx
+  index.css     Tailwind import and color tokens
 ```
 
 ## How the weekly impact metric is calculated
@@ -74,6 +116,8 @@ A record counts as **used before expiration** when the local calendar day you ma
 The activity list also shows items that were marked after their date. Those items are not included in the weekly number.
 
 This is a count of recorded products. It is not a measurement of kilograms of food saved or money saved. A past date is not treated as proof that food is unsafe.
+
+Expiration dates are stored as `YYYY-MM-DD` calendar days and compared in local time. The app does not parse a date-only string as a UTC midnight instant, which would shift the day in some time zones.
 
 ## Current limitations
 
