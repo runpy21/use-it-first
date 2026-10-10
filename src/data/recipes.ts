@@ -1,0 +1,180 @@
+import type { Recipe } from '../types'
+
+/** Prepared recipes. The app matches these to the kitchen. It does not generate new ones. */
+export const RECIPES: Recipe[] = [
+  {
+    id: 'spinach-omelette',
+    name: 'Spinach omelette',
+    description: 'A fast skillet breakfast that uses greens and eggs before they linger.',
+    emoji: '🍳',
+    minutes: 15,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Eggs', matchTerms: ['egg'] },
+      { name: 'Spinach', matchTerms: ['spinach'] },
+      { name: 'Milk', matchTerms: ['milk'] },
+    ],
+    steps: [
+      'Whisk the eggs with a splash of milk and a pinch of salt.',
+      'Wilt the spinach in a pan for a minute, then pour in the eggs.',
+      'Cook over medium heat until just set. Fold and serve.',
+    ],
+  },
+  {
+    id: 'banana-yogurt-bowl',
+    name: 'Banana yogurt bowl',
+    description: 'Ripe bananas and yogurt, with nothing else required.',
+    emoji: '🍌',
+    minutes: 5,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Bananas', matchTerms: ['banana'] },
+      { name: 'Yogurt', matchTerms: ['yogurt'] },
+    ],
+    steps: [
+      'Spoon the yogurt into a bowl.',
+      'Slice the bananas on top.',
+      'Eat it straight away, while the fruit is still at its best.',
+    ],
+  },
+  {
+    id: 'tomato-scramble',
+    name: 'Tomato scramble',
+    description: 'Soft eggs with tomatoes that are getting close to their date.',
+    emoji: '🍅',
+    minutes: 12,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Eggs', matchTerms: ['egg'] },
+      { name: 'Tomatoes', matchTerms: ['tomato'] },
+    ],
+    steps: [
+      'Chop the tomatoes.',
+      'Cook them in a pan until they soften and release their juice.',
+      'Add beaten eggs and stir gently until just cooked.',
+    ],
+  },
+  {
+    id: 'chickpea-salad',
+    name: 'Chickpea carrot salad',
+    description: 'A pantry-and-crisper bowl that keeps well for lunch tomorrow.',
+    emoji: '🥗',
+    minutes: 15,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Chickpeas', matchTerms: ['chickpea'] },
+      { name: 'Carrots', matchTerms: ['carrot'] },
+      { name: 'Tomatoes', matchTerms: ['tomato'] },
+    ],
+    steps: [
+      'Drain the chickpeas and rinse them.',
+      'Grate or thinly slice the carrots, and chop the tomatoes.',
+      'Toss everything with salt, olive oil if you have it, and a squeeze of citrus.',
+    ],
+  },
+  {
+    id: 'chicken-carrots',
+    name: 'Chicken with carrots',
+    description: 'A simple tray meal for the chicken you meant to cook this week.',
+    emoji: '🍗',
+    minutes: 40,
+    difficulty: 'Medium',
+    ingredients: [
+      { name: 'Chicken', matchTerms: ['chicken'] },
+      { name: 'Carrots', matchTerms: ['carrot'] },
+    ],
+    steps: [
+      'Heat the oven to 200°C.',
+      'Cut the carrots into sticks and season the chicken.',
+      'Roast together until the chicken is cooked through and the carrots are tender.',
+    ],
+  },
+  {
+    id: 'banana-toast',
+    name: 'Banana toast',
+    description: 'Use the loaf and the spotted bananas in one sitting.',
+    emoji: '🍞',
+    minutes: 10,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Bread', matchTerms: ['bread'] },
+      { name: 'Bananas', matchTerms: ['banana'] },
+    ],
+    steps: [
+      'Toast the bread.',
+      'Slice the bananas and lay them on top.',
+      'Add a pinch of salt or a drizzle of honey if you want it sweeter.',
+    ],
+  },
+  {
+    id: 'tomato-soup',
+    name: 'Tomato milk soup',
+    description: 'A small pot of soup that also gives you an excuse to finish the bread.',
+    emoji: '🥣',
+    minutes: 25,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Tomatoes', matchTerms: ['tomato'] },
+      { name: 'Milk', matchTerms: ['milk'] },
+      { name: 'Bread', matchTerms: ['bread'] },
+    ],
+    steps: [
+      'Chop the tomatoes and simmer them with a little water until soft.',
+      'Stir in the milk and warm it through without boiling hard.',
+      'Season, and serve with bread on the side.',
+    ],
+  },
+  {
+    id: 'yogurt-carrot-dip',
+    name: 'Yogurt carrot dip',
+    description: 'Yogurt as a dip, carrots as the thing you actually finish.',
+    emoji: '🥕',
+    minutes: 10,
+    difficulty: 'Easy',
+    ingredients: [
+      { name: 'Yogurt', matchTerms: ['yogurt'] },
+      { name: 'Carrots', matchTerms: ['carrot'] },
+    ],
+    steps: [
+      'Stir a pinch of salt into the yogurt.',
+      'Cut the carrots into sticks.',
+      'Serve the sticks with the yogurt for dipping.',
+    ],
+  },
+  {
+    id: 'bread-pudding',
+    name: 'Bread pudding',
+    description: 'A good use for bread that is fine to eat but past its best for sandwiches.',
+    emoji: '🍮',
+    minutes: 35,
+    difficulty: 'Medium',
+    ingredients: [
+      { name: 'Bread', matchTerms: ['bread'] },
+      { name: 'Milk', matchTerms: ['milk'] },
+      { name: 'Eggs', matchTerms: ['egg'] },
+    ],
+    steps: [
+      'Heat the oven to 180°C and tear the bread into a baking dish.',
+      'Whisk the eggs and milk with a pinch of sugar or salt, then pour it over the bread.',
+      'Let it sit for 10 minutes, then bake until set.',
+    ],
+  },
+  {
+    id: 'lemon-chicken',
+    name: 'Lemon herb chicken',
+    description: 'Roast chicken and carrots. Lemon is listed even when you still need to buy it.',
+    emoji: '🍋',
+    minutes: 45,
+    difficulty: 'Medium',
+    ingredients: [
+      { name: 'Chicken', matchTerms: ['chicken'] },
+      { name: 'Carrots', matchTerms: ['carrot'] },
+      { name: 'Lemon', matchTerms: ['lemon'] },
+    ],
+    steps: [
+      'Heat the oven to 200°C.',
+      'Toss the carrots and chicken with salt. Add lemon slices if you have them.',
+      'Roast until the chicken is cooked through.',
+    ],
+  },
+]
